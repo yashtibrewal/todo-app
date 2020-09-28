@@ -12,7 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/mongodb": "^3.5.27",
+    "@types/mongoose": "^5.7.36",
     "mongodb": "^3.6.2",
+    "mongoose": "^5.10.7",
     "typescript": "^4.0.3"
   },
   "devDependencies": {
