@@ -1,32 +1,10 @@
-import mongoose from "mongoose";
-import { TaskModel } from "./db/task/task.model";
-import { UserModel } from "./db/user/user.model";
+import dotenv from "dotenv";
+import { Database } from "./db/connection";
+import express from "express";
 
-const connection = mongoose.connect(
-  "mongodb://localhost:27017/task-manager-api",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+dotenv.config();
 
-// const task = new TaskModel({ description: "Learn Backend" });
-// task
-//   .save()
-//   .then(() => {
-//     console.log(task);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+const PORT = process.env.PORT;
 
-// const user = new UserModel({
-//   name: "Yash",
-//   email: "yashkush.tibrewal@gmail.com",
-//   password: "pass!2345",
-// });
-// user
-//   .save()
-//   .then(() => {
-//     console.log(user);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+const db = new Database(process.env.DB_URI);
+db.connect();
