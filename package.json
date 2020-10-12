@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx tsc",
     "start": "node ./dist/app.js",
-    "dev": "npm run compile && npm start"
+    "dev": "nodemon ./src/app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "eslint": "^7.7.0",
     "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.4",
-    "npx": "^10.2.2"
+    "npx": "^10.2.2",
+    "ts-node": "^9.0.0"
   }
 }
