@@ -4,9 +4,10 @@ import { Request, Response } from "express";
 
 class HealthCheckMiddleware implements Middleware {
     handler(): HandlerFunction {
-        return (req: Request, res: Response, next: NextFunction): void => {
+        return async(req: Request, res: Response, next: NextFunction): Promise<void> => {
             res.send({ status: "healthy" });
             next();
+            return;
         }
     }
 }

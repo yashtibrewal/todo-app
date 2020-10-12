@@ -1,5 +1,6 @@
-import mongodb from "mongodb";
-mongodb.MongoClient.connect;
+import mongoose from "mongoose";
+
+
 class Database {
   private DB_URI: string;
   constructor(DB_URI: string | undefined) {
@@ -7,7 +8,7 @@ class Database {
     this.DB_URI = DB_URI;
   }
   connect() {
-    mongodb.MongoClient.connect(this.DB_URI, {
+    mongoose.connect(this.DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }).then(()=>{
