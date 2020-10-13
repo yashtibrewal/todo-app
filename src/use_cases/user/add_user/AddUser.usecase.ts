@@ -4,7 +4,7 @@ class AddUserUseCase {
 
     async execute(user_data:any) {
 
-        return userQueries.createUser(user_data);
+        return await userQueries.createUser(user_data);
 
     }
 
