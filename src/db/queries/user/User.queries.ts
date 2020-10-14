@@ -1,11 +1,11 @@
-import { UserModel } from "../../models/user/user.model";
-import { AddUserRequest } from "../../../use_cases/user/add_user/AddUser.requet";
+import { IUserDocument, UserModel, IUser } from "../../models";
 
 class UserQueries {
 
-    async createUser(user: AddUserRequest) {
-        console.debug('called create user query with ', JSON.stringify(user));
+    async createUser(user: IUser):Promise<IUserDocument> {
+
         return await UserModel.create(user);
+        
     }
 
 }
