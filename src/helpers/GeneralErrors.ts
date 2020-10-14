@@ -22,4 +22,12 @@ class NotFound implements Error {
     }
 }
 
-export { InvalidDataType, InvalidValue, NotFound }
+class UnexpectedError implements Error {
+    name = "UnexpectedError";
+    message: string;
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+export { InvalidDataType, InvalidValue, NotFound, UnexpectedError }
