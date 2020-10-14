@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { addTaskController } from "../use_cases";
+import { addTaskController, addTaskValidator } from "../use_cases";
 
 const taskRouter = Router();
 
-taskRouter.post('/create', addTaskController.handler());
+taskRouter.post(
+    '/create',
+    addTaskValidator.handler(),
+    addTaskController.handler()
+);
 
 export { taskRouter };

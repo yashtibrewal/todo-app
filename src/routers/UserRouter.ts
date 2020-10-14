@@ -1,8 +1,11 @@
 import { Router } from "express"
-import { addUserController } from '../use_cases/user/add_user';
+import { addUserController, addUserValidator } from '../use_cases';
 
 const userRouter = Router();
 
-userRouter.post('/create', addUserController.handler());
+userRouter.post('/create',
+    addUserValidator.handler(),
+    addUserController.handler()
+);
 
 export { userRouter };

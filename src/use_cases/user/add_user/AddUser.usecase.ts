@@ -1,8 +1,9 @@
 import { userQueries } from "../../../db";
+import { AddUserRequest } from "./AddUser.requet";
 
 class AddUserUseCase {
 
-    async execute(user_data:any) {
+    async execute(user_data: AddUserRequest) {
 
         return await userQueries.createUser(user_data);
 

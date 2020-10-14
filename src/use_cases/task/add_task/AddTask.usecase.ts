@@ -1,8 +1,9 @@
 import { taskQueries } from "../../../db";
+import { AddTaskRequest } from "./AddTask.request";
 
 class AddTaskUseCase {
 
-    async execute(task: any) {
+    async execute(task: AddTaskRequest) {
 
         return await taskQueries.createTask(task);
 
