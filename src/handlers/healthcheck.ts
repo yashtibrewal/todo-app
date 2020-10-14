@@ -1,14 +1,10 @@
-import { NextFunction } from "express";
-import { Middleware, HandlerFunction } from "../interfaces";
 import { Request, Response } from "express";
+import { Middleware } from "../abstracts";
 
-class HealthCheckMiddleware implements Middleware {
-    handler(): HandlerFunction {
-        return async(req: Request, res: Response, next: NextFunction): Promise<void> => {
-            res.send({ status: "healthy" });
-            next();
-            return;
-        }
+class HealthCheckMiddleware extends Middleware {
+    async implementation(req: Request, res: Response):Promise<void>{
+        res.send({ status: "healthy" });
+        return;
     }
 }
 

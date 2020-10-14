@@ -1,21 +1,17 @@
-import { NextFunction, Request, Response } from "express";
-import { ApiResponse } from "../../../abstracts/ApiResponse";
-import { HandlerFunction, Middleware } from "../../../interfaces";
+import { Request, Response } from "express";
+import { Middleware } from "../../../abstracts";
 import { AddTaskParser } from "./AddTask.parser";
 
-class AddTaskValidator extends ApiResponse implements Middleware {
+class AddTaskValidator extends Middleware {
 
-    handler(): HandlerFunction {
-        return async (req: Request, res: Response, next: NextFunction) => {
-            const addTaskParser = new AddTaskParser(req.body);
-            if (addTaskParser.errors.length > 0) {
-                res.status(400);
-                res.locals.response = await this.fail(addTaskParser.errors);
-                await this.sendResponse(res);
-            } else {
-                return next();
-            }
+    async implementation(req: Request, res: Response):Promise<void>{
+        const addTaskParser = new AddTaskParser(req.body);
+        if (addTaskParser.errors.length > 0) {
+            res.status(400);
+            res.locals.response = await this.fail(addTaskParser.errors);
+            await this.sendResponse(res);
         }
+        return;
     }
 
 }
