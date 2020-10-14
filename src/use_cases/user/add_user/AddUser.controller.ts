@@ -9,6 +9,7 @@ class AddUserController extends ApiResponse implements Middleware {
         return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
             const result = await addUserUseCase.execute(req.body);
             res.locals.response = result;
+            res.status(201);
             await this.sendResponse(res);
             return;
         }
