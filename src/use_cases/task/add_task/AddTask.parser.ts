@@ -20,7 +20,7 @@ class AddTaskParser {
         let converted_object: any = {};
 
         converted_object.description = data.description;
-        if (data.completed) {
+        if (data.completed != undefined) {
             converted_object.completed = data.completed.toLowerCase() == 'true' ? true : false;
         }
 

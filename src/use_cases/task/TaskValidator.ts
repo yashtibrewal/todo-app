@@ -23,9 +23,13 @@ class TaskValidator extends BaseValidator {
     // for optional properties
     validate_completed(value: any): void {
 
-        if (value) {
+        if (value!==undefined) {
             let field = 'completed';
             if (this.checkType(value, 'string', field)) return;
+            if (validator.isEmpty(value)) {
+                this.errors.push(new GeneralErrors.InvalidValue(field));
+                return;
+            }
             if (!(validator.isBoolean(value))) {
                 this.errors.push(new GeneralErrors.InvalidValue('completed'));
                 return;
