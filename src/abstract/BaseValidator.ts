@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb"
 import { GeneralErrors } from "../helpers";
 
 class BaseValidator {
@@ -21,6 +22,24 @@ class BaseValidator {
         } else {
             return false;
         }
+    }
+
+    checkObjectId(value: string, field: string) {
+        try {
+            new ObjectId(value);
+            return false;
+        } catch (err) {
+            this.errors.push(new GeneralErrors.InvalidValue(field));
+            return true;
+        }
+    }
+
+    validate_id(value: any): void {
+
+        let field = 'id';
+        if (this.checkUndefined(value, field)) return;
+        if (this.checkType(value, 'string', field)) return;
+        if (this.checkObjectId(value, field)) return;
     }
 
 }
