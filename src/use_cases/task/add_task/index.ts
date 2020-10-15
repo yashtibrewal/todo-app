@@ -1,5 +1,5 @@
-import { AddTaskController } from "./AddTask.controller";
-import { AddTaskValidator } from "./AddTask.validator";
+import { AddTaskController } from "./controller";
+import { AddTaskValidator } from "./validator";
 
 const addTaskValidator = new AddTaskValidator();
 const addTaskController = new AddTaskController();

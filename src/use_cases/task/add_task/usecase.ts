@@ -1,16 +1,13 @@
 import { taskQueries } from "../../../db";
-import { AddTaskRequest } from "./AddTask.request";
+import { AddTaskRequest } from "./request";
 
 class AddTaskUseCase {
 
     async execute(task: AddTaskRequest) {
-
         return await taskQueries.createTask(task);
-
     }
 
 }
 
-const addTaskUseCase = new AddTaskUseCase();
+export const addTaskUseCase = new AddTaskUseCase();
 
-export { addTaskUseCase };

@@ -1,7 +1,7 @@
-import { AddTaskRequest } from "./AddTask.request";
+import { AddTaskRequest } from "./request";
 import { TaskValidator } from "../TaskValidator";
 
-class AddTaskParser {
+export class AddTaskParser {
 
     errors: Error[];
 
@@ -28,5 +28,3 @@ class AddTaskParser {
     }
 
 }
-
-export { AddTaskParser };

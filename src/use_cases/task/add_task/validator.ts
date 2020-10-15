@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Middleware } from "../../../abstracts";
-import { AddTaskParser } from "./AddTask.parser";
+import { AddTaskParser } from "./parser";
 
 class AddTaskValidator extends Middleware {
 

@@ -1,9 +1,8 @@
-import { HandlerFunction, IMiddleware } from "../../../interfaces";
-import { Request, Response, NextFunction } from "express";
-import { addTaskUseCase } from "./AddTask.usecase";
+import { Request, Response } from "express";
+import { addTaskUseCase } from "./usecase";
 import { Middleware } from "../../../abstracts";
 
-class AddTaskController extends Middleware {
+export class AddTaskController extends Middleware {
 
     async implementation(req: Request, res: Response):Promise<void>{
         const result = await addTaskUseCase.execute(req.body);
@@ -13,5 +12,3 @@ class AddTaskController extends Middleware {
         return;
     }
 }
-
-export { AddTaskController };

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { addUserUseCase } from "./AddUser.usecase";
+import { addUserUseCase } from "./usecase";
 import { Middleware } from "../../../abstracts";
 
 class AddUserController extends Middleware {

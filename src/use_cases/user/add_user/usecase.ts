@@ -1,5 +1,5 @@
 import { userQueries } from "../../../db";
-import { AddUserRequest } from "./AddUser.requet";
+import { AddUserRequest } from "./requet";
 
 class AddUserUseCase {
 
