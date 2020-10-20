@@ -1,9 +1,11 @@
-import { userQueries } from "../../../db";
+import { IUserDocument, userQueries } from "../../../db";
+import { Either, successClass } from "../../../interfaces/Result";
 
+type Response = Either<UseCaseError, IUserDocument[]>
 class GetAllUsersUseCase {
 
-    async execute() {
-        return await userQueries.getAllUsers();
+    async execute(): Promise<Response> {
+        return successClass(await userQueries.getAllUsers());
     }
 
 }

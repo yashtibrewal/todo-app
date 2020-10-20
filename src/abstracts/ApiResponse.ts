@@ -1,9 +1,10 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { ApiResponseStructure } from "../interfaces";
 
 abstract class ApiResponse {
 
     async fail(errors: Error[]): Promise<ApiResponseStructure> {
+
         return {
             success: false,
             data: {},

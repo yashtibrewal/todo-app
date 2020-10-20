@@ -1,11 +1,13 @@
-import { userQueries } from "../../../db";
-import { AddUserRequest } from "./requet";
+import { IUserDocument, userQueries } from "../../../db";
+import { Either, successClass } from "../../../interfaces/Result";
+import { AddUserDto } from "./dto";
 
+type Response = Either<UseCaseError, IUserDocument>
 class AddUserUseCase {
 
-    async execute(user_data: AddUserRequest) {
+    async execute(user_data: AddUserDto): Promise<Response> {
 
-        return await userQueries.createUser(user_data);
+        return successClass(await userQueries.createUser(user_data));
 
     }
 

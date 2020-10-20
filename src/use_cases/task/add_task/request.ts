@@ -1,6 +1,6 @@
 interface AddTaskRequest {
-    description: string,
-    completed?: boolean,
+    description: any,
+    completed?: any,
 }
 
 export { AddTaskRequest };

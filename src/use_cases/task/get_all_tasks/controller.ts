@@ -6,7 +6,13 @@ class GetAllTasksController extends Middleware {
 
     async implementation(req: Request, res: Response): Promise<void> {
         const result = await getAllTasksUseCase.execute();
-        res.locals.response = result;
+        if (result.isErrClass()) {
+            res.locals.response = await this.fail([result.value]);
+            res.status(400);
+        }
+        else {
+            res.locals.response = await this.success(result.value);
+        }
         await this.sendResponse(res);
         return;
     }

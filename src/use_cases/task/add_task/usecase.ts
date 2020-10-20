@@ -1,10 +1,14 @@
-import { taskQueries } from "../../../db";
-import { AddTaskRequest } from "./request";
+import { ITaskDocument, taskQueries } from "../../../db";
+import { Either, successClass } from "../../../interfaces/Result";
+import { AddTaskDto } from "./dto";
+
+type Response = Either<UseCaseError, ITaskDocument>
 
 class AddTaskUseCase {
 
-    async execute(task: AddTaskRequest) {
-        return await taskQueries.createTask(task);
+    async execute(task: AddTaskDto): Promise<Response> {
+        const result = successClass(await taskQueries.createTask(task));
+        return result;
     }
 
 }

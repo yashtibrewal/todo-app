@@ -1,9 +1,11 @@
-import { taskQueries } from "../../../db";
+import { ITaskDocument, taskQueries } from "../../../db";
+import { Either, successClass } from "../../../interfaces/Result";
 
+type Response = Either<UseCaseError, ITaskDocument[]>
 class GetAllTasksUseCase {
 
-    async execute() {
-        return await taskQueries.getAllTask();
+    async execute(): Promise<Response> {
+        return successClass(await taskQueries.getAllTask());
     }
 
 }

@@ -1,16 +1,17 @@
 import { ITaskDocument, taskQueries } from "../../../db";
+import { Either, errClass, successClass } from "../../../interfaces/Result";
 import { TaskNotFound } from "../UsecaseErrors";
 import { GetTaskDto } from "./dto";
 
-
+type Response = Either<UseCaseError, ITaskDocument>
 class GetTaskUseCase {
 
-    async execute(data: GetTaskDto): Promise<ITaskDocument | TaskNotFound> {
+    async execute(data: GetTaskDto): Promise<Response> {
         const result = await taskQueries.getTask(data._id);
         if (result == undefined) {
-            return new TaskNotFound();
+            return errClass(new TaskNotFound());
         } else {
-            return result;
+            return successClass(result);
         }
 
     }

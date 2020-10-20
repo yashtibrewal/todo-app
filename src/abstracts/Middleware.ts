@@ -13,7 +13,7 @@ abstract class Middleware extends ApiResponse implements IMiddleware {
                 }
                 return;
             } catch (err) {
-                res.locals.response = await this.fail([new UnexpectedError(err.message)]);
+                res.locals.response = await this.fail([new UnexpectedError(err.message).errorValue()]);
                 res.status(500);
                 await this.sendResponse(res);
                 return;

@@ -14,7 +14,7 @@ class TaskValidator extends BaseValidator {
         if (this.checkUndefined(value, field)) return;
         if (this.checkType(value, 'string', field)) return;
         if (!(validator.isLength(value as string, { min: 3, max: 50 }))) {
-            this.errors.push(new GeneralErrors.InvalidValue(field));
+            this.errors.push(new GeneralErrors.InvalidValue(field).errorValue());
             return;
         }
 
@@ -27,11 +27,11 @@ class TaskValidator extends BaseValidator {
             let field = 'completed';
             if (this.checkType(value, 'string', field)) return;
             if (validator.isEmpty(value)) {
-                this.errors.push(new GeneralErrors.InvalidValue(field));
+                this.errors.push(new GeneralErrors.InvalidValue(field).errorValue());
                 return;
             }
             if (!(validator.isBoolean(value))) {
-                this.errors.push(new GeneralErrors.InvalidValue(field));
+                this.errors.push(new GeneralErrors.InvalidValue(field).errorValue());
                 return;
             }
         }

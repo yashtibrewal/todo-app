@@ -1,16 +1,19 @@
 import { IUserDocument, userQueries } from "../../../db";
+import { Either, errClass, successClass } from "../../../interfaces/Result";
 import { UserNotFound } from "../UsecaseErrors";
 import { GetUserDto } from "./dto";
 
 
+type Response = Either<UserNotFound, IUserDocument>
+
 class GetUserUseCase {
 
-    async execute(data: GetUserDto): Promise<IUserDocument | UserNotFound> {
+    async execute(data: GetUserDto): Promise<Response> {
         const result = await userQueries.getUser(data._id);
         if (result == undefined) {
-            return new UserNotFound();
+            return errClass(new UserNotFound());
         } else {
-            return result;
+            return successClass(result);
         }
     }
 

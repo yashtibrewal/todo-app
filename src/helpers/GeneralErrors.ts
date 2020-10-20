@@ -1,33 +1,37 @@
-class InvalidDataType implements Error {
-    name = 'InvalidDataType';
-    message: string;
+import { Result } from "../interfaces/Result";
+
+export class InvalidDataType extends Result<GeneralError> {
     constructor(field: string, expected_type: string) {
-        this.message = `Invalid Data Type Detected for the field ${field}, expected ${expected_type}`;
+        super(false, {
+            message: `Invalid Data Type Detected for the field ${field}, expected ${expected_type}`,
+            name: "InvalidDataType"
+        });
     }
 }
 
-class InvalidValue implements Error {
-    name = "InvalidValue";
-    message: string;
+export class InvalidValue extends Result<GeneralError> {
     constructor(field: string) {
-        this.message = `Invalid value found for the field ${field}`;
+        super(false, {
+            message: `Invalid value found for the field ${field}`,
+            name: "InvalidValue"
+        });
     }
 }
 
-class NotFound implements Error {
-    name = "NotFound";
-    message: string;
+export class NotFound extends Result<GeneralError> {
     constructor(field: string) {
-        this.message = `The field ${field} was expected`;
+        super(false, {
+            message: `The field ${field} was expected`,
+            name: "NotFound"
+        });
     }
 }
 
-class UnexpectedError implements Error {
-    name = "UnexpectedError";
-    message: string;
+export class UnexpectedError extends Result<GeneralError> {
     constructor(message: string) {
-        this.message = message;
+        super(false, {
+            message,
+            name: "UnexpectedErrorUnexpectedError"
+        });
     }
 }
-
-export { InvalidDataType, InvalidValue, NotFound, UnexpectedError }

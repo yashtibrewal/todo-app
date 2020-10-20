@@ -1,16 +1,20 @@
-export class TaskNotFound implements Error {
-    name = 'TaskNotFound';
-    message: string;
+import { Result } from "../../interfaces/Result";
+
+
+export class TaskAlreadyExists extends Result<UseCaseError>{
     constructor() {
-        this.message = `Task not found`;
+        super(false, {
+            message: "The task already exists",
+            name: "TaskAlreadyExists"
+        });
     }
 }
 
-export class TaskAlreadyExists implements Error {
-    name = 'TaskAlreadyExists';
-    message: string;
+export class TaskNotFound extends Result<UseCaseError> {
     constructor() {
-        this.message = `Task already exists`;
+        super(false, {
+            message: `Task not found`,
+            name: "TaskNotFound"
+        });
     }
 }
-

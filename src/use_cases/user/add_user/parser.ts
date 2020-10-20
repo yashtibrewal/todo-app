@@ -1,4 +1,4 @@
-import { AddUserRequest } from "./requet";
+import { AddUserRequest } from "./request";
 import { UserValidator } from "../UserValidator";
 
 class AddUserParser {

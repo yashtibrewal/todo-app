@@ -2,13 +2,14 @@ import { ObjectId } from "mongodb"
 import { GeneralErrors } from "../helpers";
 
 class BaseValidator {
-    errors: Error[];
+    errors: GeneralError[];
     constructor() {
         this.errors = [];
     }
     checkUndefined(value: any, field: string): boolean {
         if (value == undefined) {
-            this.errors.push(new GeneralErrors.NotFound(field));
+            const error = new GeneralErrors.NotFound(field).errorValue();
+            this.errors.push(error);
             return true;
         } else {
             return false;
@@ -17,7 +18,7 @@ class BaseValidator {
 
     checkType(value: any, expected_type: string, field: string) {
         if (typeof value != expected_type) {
-            this.errors.push(new GeneralErrors.InvalidDataType(field, expected_type))
+            this.errors.push(new GeneralErrors.InvalidDataType(field, expected_type).errorValue())
             return true;
         } else {
             return false;
@@ -29,7 +30,7 @@ class BaseValidator {
             new ObjectId(value);
             return false;
         } catch (err) {
-            this.errors.push(new GeneralErrors.InvalidValue(field));
+            this.errors.push(new GeneralErrors.InvalidValue(field).errorValue());
             return true;
         }
     }
