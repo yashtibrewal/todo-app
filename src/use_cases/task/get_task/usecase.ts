@@ -1,18 +1,18 @@
 import { ITaskDocument, taskQueries } from "../../../db";
 import { TaskNotFound } from "../UsecaseErrors";
-import { GetTaskRequest } from "./request";
+import { GetTaskDto } from "./dto";
 
 
-class GetTaskUseCase{
+class GetTaskUseCase {
 
-    async execute(data:GetTaskRequest):Promise<ITaskDocument|TaskNotFound>{
-         const result = await taskQueries.getTask(data.id);
-        if(result == undefined){
+    async execute(data: GetTaskDto): Promise<ITaskDocument | TaskNotFound> {
+        const result = await taskQueries.getTask(data._id);
+        if (result == undefined) {
             return new TaskNotFound();
-        }else{
+        } else {
             return result;
         }
-         
+
     }
 
 }

@@ -1,12 +1,12 @@
 import { IUserDocument, userQueries } from "../../../db";
 import { UserNotFound } from "../UsecaseErrors";
-import { GetUserRequest } from "./request";
+import { GetUserDto } from "./dto";
 
 
 class GetUserUseCase {
 
-    async execute(data: GetUserRequest): Promise<IUserDocument | UserNotFound> {
-        const result = await userQueries.getUser(data.id);
+    async execute(data: GetUserDto): Promise<IUserDocument | UserNotFound> {
+        const result = await userQueries.getUser(data._id);
         if (result == undefined) {
             return new UserNotFound();
         } else {
