@@ -1,4 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document } from "mongoose";
+
+interface ITask {
+  description: string,
+  completed?: boolean,
+}
+
+interface ITaskDocument extends ITask, Document { };
 
 const taskSchema = new Schema(
   {
@@ -20,6 +27,6 @@ const taskSchema = new Schema(
   }
 );
 
-const TaskModel = model("task", taskSchema);
+const TaskModel = model<ITaskDocument>("task", taskSchema);
 
-export { TaskModel };
+export { ITask, TaskModel, ITaskDocument };

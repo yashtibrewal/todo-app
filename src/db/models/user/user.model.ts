@@ -1,5 +1,13 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document } from "mongoose";
 import validator from "validator";
+
+interface IUser {
+  name: string,
+  email: string,
+  password: string
+}
+
+interface IUserDocument extends IUser, Document { };
 
 const userSchema = new Schema(
   {
@@ -40,6 +48,6 @@ const userSchema = new Schema(
   { timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" } }
 );
 
-const UserModel = model("user", userSchema);
+const UserModel = model<IUserDocument>("user", userSchema);
 
-export { UserModel };
+export { IUser, UserModel, IUserDocument };
