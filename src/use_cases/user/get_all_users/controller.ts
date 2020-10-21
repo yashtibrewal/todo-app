@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
 import { getAllUsersUseCase } from "./usecase";
 import { Middleware } from "../../../abstracts";
+import { GetAllUsersParamsDtoConverter } from "./dto";
+import { GetAllUsersParamRequest } from "./request";
 
 class GetAllUsersController extends Middleware {
 
     async implementation(req: Request, res: Response): Promise<void> {
-        const result = await getAllUsersUseCase.execute();
 
+        const getAllUsersParamsDtoConverter = new GetAllUsersParamsDtoConverter(req.query as unknown as GetAllUsersParamRequest);
+        const result = await getAllUsersUseCase.execute(getAllUsersParamsDtoConverter.getConvertedDto());
         if (result.isErrClass()) {
-            res.locals.response = this.fail([result.value]);
+            res.locals.response = await this.fail([result.value]);
             res.status(400);
         } else {
-            res.locals.response = this.success(result.value);
+            res.locals.response = await this.success(result.value);
         }
 
         await this.sendResponse(res);

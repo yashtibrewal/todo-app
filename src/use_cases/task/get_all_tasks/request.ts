@@ -1,6 +1,3 @@
-export interface GetAllTaskRequestParams{
+import { PaginationParams } from "../../../interfaces";
 
-    skip:any,
-    limit: any,
-
-}
+export interface GetAllTaskRequestParamsRequest extends PaginationParams { }

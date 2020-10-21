@@ -1,12 +1,11 @@
-import { GetAllTaskRequestParams } from "./request";
+import { GetAllTaskRequestParamsRequest } from "./request";
 import { TaskValidator } from "../TaskValidator";
-import { GetAllTaskParamsDto } from "./dto";
 
 export class GetAllTaskParser {
 
     errors: Error[];
 
-    constructor(data: GetAllTaskRequestParams) {
+    constructor(data: GetAllTaskRequestParamsRequest) {
 
         const taskValidator = new TaskValidator();
 
@@ -16,14 +15,5 @@ export class GetAllTaskParser {
         this.errors = taskValidator.errors;
     }
 
-    convert(data: GetAllTaskRequestParams): GetAllTaskParamsDto {
-
-        let converted_object: GetAllTaskParamsDto = {
-            limit: data.limit,
-            skip: data.skip
-        };
-
-        return converted_object;
-    }
 
 }

@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { getAllTasksUseCase } from "./usecase";
 import { Middleware } from "../../../abstracts";
 import { GetAllTaskParamsDtoConverter } from "./dto";
-import { GetAllTaskRequestParams } from "./request";
+import { GetAllTaskRequestParamsRequest } from "./request";
 
 class GetAllTasksController extends Middleware {
 
     async implementation(req: Request, res: Response): Promise<void> {
 
-        const getAllTaskParamsDtoConverter = new GetAllTaskParamsDtoConverter(req.query as unknown as GetAllTaskRequestParams);
+        const getAllTaskParamsDtoConverter = new GetAllTaskParamsDtoConverter(req.query as unknown as GetAllTaskRequestParamsRequest);
         const result = await getAllTasksUseCase.execute(getAllTaskParamsDtoConverter.getConvertedDto());
         if (result.isErrClass()) {
             res.locals.response = await this.fail([result.value]);

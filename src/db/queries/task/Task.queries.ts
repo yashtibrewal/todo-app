@@ -1,7 +1,7 @@
 import { ITask, ITaskDocument, TaskModel } from "../../models"
 import { ObjectId } from "mongodb";
 
-class TaskQueries {
+export class TaskQueries {
 
     async createTask(task: ITask): Promise<ITaskDocument> {
         return await TaskModel.create(task);
@@ -23,7 +23,3 @@ class TaskQueries {
     }
 
 }
-
-const taskQueries = new TaskQueries();
-
-export { taskQueries };

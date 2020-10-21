@@ -5,7 +5,7 @@ class AddUserParser {
 
     errors: Error[];
 
-    constructor(data: any) {
+    constructor(data: AddUserRequest) {
 
         const userValidator = new UserValidator();
 
@@ -14,14 +14,6 @@ class AddUserParser {
         userValidator.validate_password(data.password);
 
         this.errors = userValidator.errors;
-
-    }
-
-    convert(data: any): AddUserRequest {
-
-        let converted_object: any = {}
-        converted_object = data;
-        return converted_object;
 
     }
 

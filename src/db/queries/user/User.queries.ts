@@ -7,8 +7,15 @@ export class UserQueries {
         return await UserModel.create(user);
     }
 
-    async getAllUsers(): Promise<IUserDocument[]> {
-        return await UserModel.find();
+    async getAllUsers(skip:number,limit:number): Promise<IUserDocument[]> {
+        return await UserModel.aggregate([
+            {
+                $skip: skip
+            },
+            {
+                $limit: limit
+            }
+        ]);
     }
 
     async getUser(id: ObjectId): Promise<IUserDocument | null> {
