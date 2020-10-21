@@ -1,11 +1,21 @@
 import { ObjectId } from "mongodb"
-import { GeneralErrors } from "../helpers";
+import validator from "validator";
+import { GeneralError , GeneralErrors } from "../helpers";
 
 class BaseValidator {
     errors: GeneralError[];
     constructor() {
         this.errors = [];
     }
+
+    validate_number(value: any, field: string) {
+        if(this.checkUndefined(value,field)) return;
+        if(this.checkType(value,'string',field)) return;
+        if(validator.isNumeric(value) == false){
+            this.errors.push(new GeneralErrors.InvalidValue(field).errorValue());
+        }
+    }
+
     checkUndefined(value: any, field: string): boolean {
         if (value == undefined) {
             const error = new GeneralErrors.NotFound(field).errorValue();

@@ -7,11 +7,18 @@ class TaskQueries {
         return await TaskModel.create(task);
     }
 
-    async getAllTask(): Promise<ITaskDocument[]> {
-        return await TaskModel.find();
+    async getAllTask(skip: number, limit: number): Promise<ITaskDocument[]> {
+        return await TaskModel.aggregate([
+            {
+                $skip: skip
+            },
+            {
+                $limit: limit
+            }
+        ]);
     }
 
-    async getTask(id: ObjectId):Promise<ITaskDocument|null> {
+    async getTask(id: ObjectId): Promise<ITaskDocument | null> {
         return await TaskModel.findById(id);
     }
 

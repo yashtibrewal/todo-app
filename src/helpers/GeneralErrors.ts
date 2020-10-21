@@ -1,4 +1,5 @@
 import { Result } from "../interfaces/Result";
+import { GeneralError } from "./GeneralError";
 
 export class InvalidDataType extends Result<GeneralError> {
     constructor(field: string, expected_type: string) {
@@ -31,7 +32,7 @@ export class UnexpectedError extends Result<GeneralError> {
     constructor(message: string) {
         super(false, {
             message,
-            name: "UnexpectedErrorUnexpectedError"
+            name: "UnexpectedError"
         });
     }
 }
