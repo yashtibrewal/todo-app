@@ -1,6 +1,5 @@
 import { Router } from "express"
-import { addUserController, addUserValidator, getAllUsersController } from '../use_cases';
-import { getUserController, getUserValidator } from "../use_cases/user/get_user";
+import { addUserController, addUserValidator, getAllUsersController, getAllUserValidator, getUserController, getUserValidator } from '../use_cases';
 
 const userRouter = Router();
 
@@ -10,6 +9,7 @@ userRouter.post('/',
 );
 
 userRouter.get('/',
+    getAllUserValidator.handler(),
     getAllUsersController.handler()
 )
 

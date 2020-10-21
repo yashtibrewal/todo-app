@@ -1,11 +1,12 @@
 import { ITaskDocument, taskQueries } from "../../../db";
 import { Either, successClass } from "../../../interfaces/Result";
+import { GetAllTaskParamsDto } from "./dto";
 
 type Response = Either<UseCaseError, ITaskDocument[]>
 class GetAllTasksUseCase {
 
-    async execute(): Promise<Response> {
-        return successClass(await taskQueries.getAllTask());
+    async execute(data: GetAllTaskParamsDto): Promise<Response> {
+        return successClass(await taskQueries.getAllTask(data.skip, data.limit));
     }
 
 }
