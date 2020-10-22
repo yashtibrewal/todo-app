@@ -9,13 +9,13 @@ export class AddTaskController extends Middleware {
         const addTaskDtoConverter = new AddTaskDtoConverter(req.body);
         const result = await addTaskUseCase.execute(addTaskDtoConverter.getConvertedDto());
 
-        if (result.isErrClass()) {
-            res.locals.response = await this.fail([result.value]);
-            res.status(400);
-        }
-        else {
+        if (result.isSuccessClass()) {
             res.locals.response = await this.success(result.value);
             res.status(201);
+        }
+        else {
+            res.locals.response = await this.fail([result.value]);
+            res.status(400);
         }
         await this.sendResponse(res);
         return;

@@ -1,4 +1,4 @@
-class UseCaseError extends Error {
+export class UseCaseError extends Error {
 
     constructor(name: string, message: string) {
         super();

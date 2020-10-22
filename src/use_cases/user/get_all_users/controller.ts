@@ -10,11 +10,11 @@ class GetAllUsersController extends Middleware {
 
         const getAllUsersParamsDtoConverter = new GetAllUsersParamsDtoConverter(req.query as unknown as GetAllUsersParamRequest);
         const result = await getAllUsersUseCase.execute(getAllUsersParamsDtoConverter.getConvertedDto());
-        if (result.isErrClass()) {
+        if (result.isSuccessClass()) {
+            res.locals.response = await this.success(result.value);
+        } else {
             res.locals.response = await this.fail([result.value]);
             res.status(400);
-        } else {
-            res.locals.response = await this.success(result.value);
         }
 
         await this.sendResponse(res);

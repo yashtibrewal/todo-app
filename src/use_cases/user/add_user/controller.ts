@@ -8,13 +8,13 @@ class AddUserController extends Middleware {
     async implementation(req: Request, res: Response): Promise<void> {
         const addUserDtoConverter = new AddUserDtoConverter(req.body);
         const result = await addUserUseCase.execute(addUserDtoConverter.getConvertedObject());
-        if (result.isErrClass()) {
-            res.locals.response = await this.fail([result.value]);
-            res.status(400);
-        }
-        else {
+        if (result.isSuccessClass()) {
             res.locals.response = await this.success(result.value);
             res.status(201);
+        }
+        else {
+            res.locals.response = await this.fail([result.value]);
+            res.status(400);
         }
         await this.sendResponse(res);
         return;

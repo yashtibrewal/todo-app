@@ -9,12 +9,12 @@ export class GetTaskController extends Middleware {
     async implementation(req: Request, res: Response): Promise<void> {
         const getTaskDtoConverter = new GetTaskDtoConverter(req.params as unknown as GetTaskRequest);
         const result = await getTaskUsecase.execute(getTaskDtoConverter.getConvertedDto());
-        if (result.isErrClass()) {
-            res.locals.response = await this.fail([result.value]);
-            res.status(400);
+        if (result.isSuccessClass()) {
+            res.locals.response = await this.success(result.value);
         }
         else {
-            res.locals.response = await this.success(result.value);
+            res.locals.response = await this.fail([result.value]);
+            res.status(400);
         }
         await this.sendResponse(res);
         return;

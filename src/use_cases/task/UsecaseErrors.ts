@@ -1,4 +1,5 @@
 import { Result } from "../../interfaces/Result";
+import { UseCaseError } from "../../helpers";
 
 
 export class TaskAlreadyExists extends Result<UseCaseError>{

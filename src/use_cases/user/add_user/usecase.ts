@@ -1,6 +1,7 @@
 import { IUserDocument, userQueries } from "../../../db";
 import { Either, successClass } from "../../../interfaces/Result";
 import { AddUserDto } from "./dto";
+import { UseCaseError } from "../../../helpers";
 
 type Response = Either<UseCaseError, IUserDocument>
 class AddUserUseCase {

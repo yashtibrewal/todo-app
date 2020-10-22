@@ -10,12 +10,12 @@ class GetAllTasksController extends Middleware {
 
         const getAllTaskParamsDtoConverter = new GetAllTaskParamsDtoConverter(req.query as unknown as GetAllTaskRequestParamsRequest);
         const result = await getAllTasksUseCase.execute(getAllTaskParamsDtoConverter.getConvertedDto());
-        if (result.isErrClass()) {
-            res.locals.response = await this.fail([result.value]);
-            res.status(400);
+        if (result.isSuccessClass()) {
+            res.locals.response = await this.success(result.value);
         }
         else {
-            res.locals.response = await this.success(result.value);
+            res.locals.response = await this.fail([result.value]);
+            res.status(400);
         }
         await this.sendResponse(res);
         return;
