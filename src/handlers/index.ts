@@ -1,5 +1,5 @@
-import { HealthCheckMiddleware } from "./healthcheck";
+import {HealthCheckMiddleware} from './healthcheck';
 
 const healthCheckMiddleware = new HealthCheckMiddleware();
 
-export { healthCheckMiddleware };
+export {healthCheckMiddleware};

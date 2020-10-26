@@ -1,5 +1,5 @@
-import { TaskQueries } from "./Task.queries"
+import {TaskQueries} from './Task.queries';
 
 const taskQueries = new TaskQueries();
 
-export { taskQueries };
+export {taskQueries};

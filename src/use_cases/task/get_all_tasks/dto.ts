@@ -1,4 +1,4 @@
-import { GetAllTaskRequestParamsRequest } from "./request";
+import {GetAllTaskRequestParamsRequest} from './request';
 
 export interface GetAllTaskParamsDto {
 
@@ -9,18 +9,16 @@ export interface GetAllTaskParamsDto {
 
 
 export class GetAllTaskParamsDtoConverter {
-
     private data: GetAllTaskParamsDto;
 
     constructor(data: GetAllTaskRequestParamsRequest) {
-        this.data = {
-            limit: parseInt(data.limit),
-            skip: parseInt(data.skip)
-        }
+      this.data = {
+        limit: parseInt(data.limit),
+        skip: parseInt(data.skip),
+      };
     }
 
-    getConvertedDto(){
-        return this.data;
+    getConvertedDto() {
+      return this.data;
     }
-
 }

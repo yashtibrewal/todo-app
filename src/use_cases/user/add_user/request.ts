@@ -4,4 +4,4 @@ interface AddUserRequest {
     password: any,
 }
 
-export { AddUserRequest }
+export {AddUserRequest};

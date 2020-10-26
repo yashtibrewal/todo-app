@@ -1,20 +1,16 @@
-import { UserValidator } from "../UserValidator";
-import { GetAllUsersParamRequest } from "./request";
+import {UserValidator} from '../UserValidator';
+import {GetAllUsersParamRequest} from './request';
 
 
-export class GetAllUsersParser{
-
+export class GetAllUsersParser {
     errors: Error[];
 
-    constructor(data: GetAllUsersParamRequest){
+    constructor(data: GetAllUsersParamRequest) {
+      const userValidator = new UserValidator();
 
-        const userValidator = new UserValidator();
+      userValidator.validate_number(data.limit, 'limit');
+      userValidator.validate_number(data.skip, 'skip');
 
-        userValidator.validate_number(data.limit, 'limit');
-        userValidator.validate_number(data.skip, 'skip');
-
-        this.errors = userValidator.errors;
-
+      this.errors = userValidator.errors;
     }
-
 }

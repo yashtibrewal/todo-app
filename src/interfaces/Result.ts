@@ -6,12 +6,12 @@ export class Result<T> {
   public constructor(isSuccess: boolean, error?: T, value?: T) {
     if (isSuccess && error != undefined) {
       throw new Error(
-        "InvalidOperation: A result cannot be successful and contain an error"
+          'InvalidOperation: A result cannot be successful and contain an error',
       );
     }
     if (!isSuccess && error == undefined) {
       throw new Error(
-        "InvalidOperation: A failing result needs to contain an error message"
+          'InvalidOperation: A failing result needs to contain an error message',
       );
     }
 
@@ -26,18 +26,18 @@ export class Result<T> {
     if (!this.is_success || this.data == undefined) {
       console.log(this.error);
       throw new Error(
-        "Can't get the value of an error result. Use 'errorValue' instead."
+          'Can\'t get the value of an error result. Use \'errorValue\' instead.',
       );
     }
 
     return this.data;
   }
 
-  public errorValue(): T{
+  public errorValue(): T {
     if (this.is_success || this.error == undefined) {
       console.log(this.data);
       throw new Error(
-        "Can't get the error of an successful result. Use 'getValue' instead."
+          'Can\'t get the error of an successful result. Use \'getValue\' instead.',
       );
     }
     return this.error;

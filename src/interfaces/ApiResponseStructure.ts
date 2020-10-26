@@ -6,4 +6,4 @@ interface ApiResponseStructure {
 
 }
 
-export { ApiResponseStructure };
+export {ApiResponseStructure};

@@ -3,4 +3,4 @@ interface AddTaskRequest {
     completed?: any,
 }
 
-export { AddTaskRequest };
+export {AddTaskRequest};
