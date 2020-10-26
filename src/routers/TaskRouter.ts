@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addTaskController, addTaskValidator, getAllTasksValidator, getAllTasksController, getTaskController, getTaskValidator } from "../use_cases";
+import { addTaskController, addTaskValidator, getAllTasksValidator, getAllTasksController, getTaskController, getTaskValidator, markTaskCompletedValidator, markTaskCompletedController } from "../use_cases";
 
 const taskRouter = Router();
 
@@ -21,5 +21,10 @@ taskRouter.get(
     getTaskController.handler()
 );
 
+taskRouter.patch(
+    '/:id/markComplete',
+    markTaskCompletedValidator.handler(),
+    markTaskCompletedController.handler()
+)
 
 export { taskRouter };
