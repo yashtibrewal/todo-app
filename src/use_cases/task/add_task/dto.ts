@@ -1,4 +1,4 @@
-import {AddTaskRequest} from './request';
+import {AddTaskRequest} from "./request";
 
 export interface AddTaskDto {
 
@@ -19,11 +19,11 @@ export class AddTaskDtoConverter {
   private data: AddTaskDto;
 
   constructor(data: AddTaskRequest) {
-    // since the dto obj is same as request
-    this.data = data;
+  	// since the dto obj is same as request
+  	this.data = data;
   }
 
   getConvertedDto(): AddTaskDto {
-    return this.data;
+  	return this.data;
   }
 }

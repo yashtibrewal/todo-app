@@ -1,18 +1,18 @@
-import {GetByIdParamsDto} from '../../../interfaces';
-import {MarkTaskCompletedRequestParam} from './request';
+import {GetByIdParamsDto} from "../../../interfaces";
+import {MarkTaskCompletedRequestParam} from "./request";
 
-export interface MarkTaskCompletedDto extends GetByIdParamsDto { }
+export type MarkTaskCompletedDto = GetByIdParamsDto
 
 export class MarkTaskCompletedDtoConverter {
   private data: MarkTaskCompletedDto;
 
   constructor(data: MarkTaskCompletedRequestParam) {
-    this.data = {
-      _id: data.id,
-    };
+  	this.data = {
+  		_id: data.id,
+  	};
   }
 
   getConvertedDto(): MarkTaskCompletedDto {
-    return this.data;
+  	return this.data;
   }
 }

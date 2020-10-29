@@ -10,53 +10,53 @@ export class Result<T> {
    * @param value value for the result
    */
   public constructor(isSuccess: boolean, error?: T, value?: T) {
-    if (isSuccess && error != undefined) {
-      throw new Error(
-          `InvalidOperation:
+  	if (isSuccess && error != undefined) {
+  		throw new Error(
+  			`InvalidOperation:
           A result cannot be successful and contain an error`,
-      );
-    }
-    if (!isSuccess && error == undefined) {
-      throw new Error(
-          `InvalidOperation:
+  		);
+  	}
+  	if (!isSuccess && error == undefined) {
+  		throw new Error(
+  			`InvalidOperation:
           A failing result needs to contain an error message`,
-      );
-    }
+  		);
+  	}
 
-    this.is_success = isSuccess;
-    this.error = error ?? null;
-    this.data = value ?? null;
+  	this.is_success = isSuccess;
+  	this.error = error ?? null;
+  	this.data = value ?? null;
 
-    Object.freeze(this);
+  	Object.freeze(this);
   }
 
   /**
    * returns the value
    */
   public getValue(): T {
-    if (!this.is_success || this.data == undefined) {
-      console.log(this.error);
-      throw new Error(
-          `Can\'t get the value of an error result.
-          Use \'errorValue\' instead.`,
-      );
-    }
+  	if (!this.is_success || this.data == undefined) {
+  		console.log(this.error);
+  		throw new Error(
+  			`Can't get the value of an error result.
+          Use 'errorValue' instead.`,
+  		);
+  	}
 
-    return this.data;
+  	return this.data;
   }
 
   /**
    * returns the error
    */
   public errorValue(): T {
-    if (this.is_success || this.error == undefined) {
-      console.log(this.data);
-      throw new Error(
-          `Can\'t get the error of an successful result.
-        Use \'getValue\' instead.`,
-      );
-    }
-    return this.error;
+  	if (this.is_success || this.error == undefined) {
+  		console.log(this.data);
+  		throw new Error(
+  			`Can't get the error of an successful result.
+        Use 'getValue' instead.`,
+  		);
+  	}
+  	return this.error;
   }
 
   /**
@@ -64,7 +64,7 @@ export class Result<T> {
    * @param value the data for the result
    */
   public static ok<U>(value?: U): Result<U> {
-    return new Result<U>(true, undefined, value);
+  	return new Result<U>(true, undefined, value);
   }
 
   /**
@@ -72,7 +72,7 @@ export class Result<T> {
    * @param error the error for the result
    */
   public static fail<U>(error: U): Result<U> {
-    return new Result<U>(false, error);
+  	return new Result<U>(false, error);
   }
 
   /**
@@ -81,10 +81,10 @@ export class Result<T> {
    * @param results list of results
    */
   public static combine(results: Result<unknown>[]): Result<unknown> {
-    for (const result of results) {
-      if (!result.is_success) return result;
-    }
-    return Result.ok();
+  	for (const result of results) {
+  		if (!result.is_success) return result;
+  	}
+  	return Result.ok();
   }
 }
 
@@ -98,21 +98,21 @@ class ErrClass<L, A> {
    * @param value
    */
   constructor(value: L) {
-    this.value = value;
+  	this.value = value;
   }
 
   /**
    * check if the object is of type ErrClass
    */
   isErrClass(): this is ErrClass<L, A> {
-    return true;
+  	return true;
   }
 
   /**
    * check if the object is of type SuccessClass
    */
   isSuccessClass(): this is SuccessClass<L, A> {
-    return false;
+  	return false;
   }
 }
 class SuccessClass<L, A> {
@@ -123,21 +123,21 @@ class SuccessClass<L, A> {
    * @param value
    */
   constructor(value: A) {
-    this.value = value;
+  	this.value = value;
   }
 
   /**
    * check if the object is of type ErrClass
    */
   isErrClass(): this is ErrClass<L, A> {
-    return false;
+  	return false;
   }
 
   /**
    * check if the object is of type SuccessClass
    */
   isSuccessClass(): this is SuccessClass<L, A> {
-    return true;
+  	return true;
   }
 }
 
@@ -146,7 +146,7 @@ class SuccessClass<L, A> {
  * @param l error value
  */
 export const errClass = <L, A>(l: L): Either<L, A> => {
-  return new ErrClass(l);
+	return new ErrClass(l);
 };
 
 /**
@@ -154,5 +154,5 @@ export const errClass = <L, A>(l: L): Either<L, A> => {
  * @param a
  */
 export const successClass = <L, A>(a: A): Either<L, A> => {
-  return new SuccessClass<L, A>(a);
+	return new SuccessClass<L, A>(a);
 };

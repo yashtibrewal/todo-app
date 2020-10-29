@@ -1,18 +1,18 @@
-import {GetTaskRequest} from './request';
-import {GetByIdParamsDto} from '../../../interfaces';
+import {GetTaskRequest} from "./request";
+import {GetByIdParamsDto} from "../../../interfaces";
 
-export interface GetTaskDto extends GetByIdParamsDto { }
+export type GetTaskDto = GetByIdParamsDto
 
 export class GetTaskDtoConverter {
   private data: GetTaskDto;
 
   constructor(data: GetTaskRequest) {
-    this.data = {
-      _id: data.id,
-    };
+  	this.data = {
+  		_id: data.id,
+  	};
   }
 
   getConvertedDto(): GetTaskDto {
-    return this.data;
+  	return this.data;
   }
 }

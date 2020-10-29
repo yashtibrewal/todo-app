@@ -1,12 +1,12 @@
-import {Request, Response} from 'express';
-import {markTaskCompletedUseCase} from './usecase';
-import {Middleware} from '../../../abstracts';
-import {MarkTaskCompletedRequestParam} from './request';
-import {MarkTaskCompletedDtoConverter} from './dto';
+import {Request, Response} from "express";
+import {markTaskCompletedUseCase} from "./usecase";
+import {Middleware} from "../../../abstracts";
+import {MarkTaskCompletedRequestParam} from "./request";
+import {MarkTaskCompletedDtoConverter} from "./dto";
 
 
 export class MarkTaskCompletedController extends Middleware {
-  /**
+	/**
    * convert to the dto object,
    * execute the use case,
    * send back errors if any
@@ -14,22 +14,22 @@ export class MarkTaskCompletedController extends Middleware {
    * @param req
    * @param res
    */
-  async implementation(req: Request, res: Response): Promise<void> {
-    const markTaskCompletedDtoConverter =
+	async implementation(req: Request, res: Response): Promise<void> {
+		const markTaskCompletedDtoConverter =
       new MarkTaskCompletedDtoConverter(
         req.params as unknown as MarkTaskCompletedRequestParam,
       );
-    const result =
+		const result =
       await markTaskCompletedUseCase.execute(
-          markTaskCompletedDtoConverter.getConvertedDto(),
+      	markTaskCompletedDtoConverter.getConvertedDto(),
       );
-    if (result.isSuccessClass()) {
-      res.locals.response = await this.success(result.value);
-    } else {
-      res.locals.response = await this.fail([result.value]);
-      res.status(400);
-    }
-    await this.sendResponse(res);
-    return;
-  }
+		if (result.isSuccessClass()) {
+			res.locals.response = await this.success(result.value);
+		} else {
+			res.locals.response = await this.fail([result.value]);
+			res.status(400);
+		}
+		await this.sendResponse(res);
+		return;
+	}
 }

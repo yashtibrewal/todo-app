@@ -1,3 +1,3 @@
-import {PaginationParams} from '../../../interfaces';
+import {PaginationParams} from "../../../interfaces";
 
-export interface GetAllTaskRequestParamsRequest extends PaginationParams { }
+export type GetAllTaskRequestParamsRequest = PaginationParams

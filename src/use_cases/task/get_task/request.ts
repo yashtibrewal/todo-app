@@ -1,3 +1,3 @@
-import {GetByIdParams} from '../../../interfaces';
+import {GetByIdParams} from "../../../interfaces";
 
-export interface GetTaskRequest extends GetByIdParams { }
+export type GetTaskRequest = GetByIdParams

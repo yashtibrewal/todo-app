@@ -1,4 +1,6 @@
-import {ObjectId} from 'mongodb';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import {ObjectId} from "mongodb";
 
 export interface GetByIdParamsDto {
 

@@ -1,19 +1,19 @@
-import {GetByIdParamsDto} from '../../../interfaces';
-import {GetUserRequest} from './request';
+import {GetByIdParamsDto} from "../../../interfaces";
+import {GetUserRequest} from "./request";
 
 
-export interface GetUserDto extends GetByIdParamsDto { }
+export type GetUserDto = GetByIdParamsDto
 
 export class GetUserDtoConverter {
   private data: GetUserDto;
 
   constructor(data: GetUserRequest) {
-    this.data = {
-      _id: data.id,
-    };
+  	this.data = {
+  		_id: data.id,
+  	};
   }
 
   getConvertedDto(): GetUserDto {
-    return this.data;
+  	return this.data;
   }
 }
