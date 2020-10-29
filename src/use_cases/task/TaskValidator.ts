@@ -2,12 +2,16 @@ import validator from 'validator';
 import {BaseValidator} from '../../abstract';
 import {GeneralErrors} from '../../helpers';
 
-class TaskValidator extends BaseValidator {
+export class TaskValidator extends BaseValidator {
   constructor() {
     super();
   }
 
-  validate_description(value: any): void {
+  /**
+   * function to validate the description field of Task document
+   * @param value data to validate
+   */
+  validateDescription(value: any): void {
     const field = 'description';
     if (this.checkUndefined(value, field)) return;
     if (this.checkType(value, 'string', field)) return;
@@ -17,8 +21,11 @@ class TaskValidator extends BaseValidator {
     }
   }
 
-  // for optional properties
-  validate_completed(value: any): void {
+  /**
+   * function to validate the completed field of the Task document
+   * @param value date to validate
+   */
+  validateCompleted(value: any): void {
     if (value !== undefined) {
       const field = 'completed';
       if (this.checkType(value, 'string', field)) return;
@@ -33,5 +40,3 @@ class TaskValidator extends BaseValidator {
     }
   }
 }
-
-export {TaskValidator};

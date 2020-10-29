@@ -2,14 +2,14 @@ import {GetAllTaskRequestParamsRequest} from './request';
 import {TaskValidator} from '../TaskValidator';
 
 export class GetAllTaskParser {
-    errors: Error[];
+  errors: Error[];
 
-    constructor(data: GetAllTaskRequestParamsRequest) {
-      const taskValidator = new TaskValidator();
+  constructor(data: GetAllTaskRequestParamsRequest) {
+    const taskValidator = new TaskValidator();
 
-      taskValidator.validate_number(data.skip, 'skip');
-      taskValidator.validate_number(data.limit, 'limit');
+    taskValidator.validateNumber(data.skip, 'skip');
+    taskValidator.validateNumber(data.limit, 'limit');
 
-      this.errors = taskValidator.errors;
-    }
+    this.errors = taskValidator.errors;
+  }
 }

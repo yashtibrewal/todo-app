@@ -1,14 +1,16 @@
 import {TaskValidator} from '../TaskValidator';
 
 export class AddTaskParser {
-    errors: Error[];
+  errors: Error[];
 
-    constructor(data: any) {
-      const taskValidator = new TaskValidator();
+  constructor(data: any) {
+    const taskValidator = new TaskValidator();
 
-      taskValidator.validate_description(data.description);
-      taskValidator.validate_completed(data.completed);
-
-      this.errors = taskValidator.errors;
+    taskValidator.validateDescription(data.description);
+    if (data.completed !== undefined) {
+      taskValidator.validateCompleted(data.completed);
     }
+
+    this.errors = taskValidator.errors;
+  }
 }

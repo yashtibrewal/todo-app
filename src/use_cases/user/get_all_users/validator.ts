@@ -5,8 +5,14 @@ import {GetAllUsersParamRequest} from './request';
 
 
 export class GetAllUserValidator extends Middleware {
+  /**
+   * validate the request parameters and send back errors if any
+   * @param req
+   * @param res
+   */
   async implementation(req: Request, res: Response): Promise<void> {
-    const getAllUsersParser = new GetAllUsersParser(req.query as unknown as GetAllUsersParamRequest);
+    const getAllUsersParser =
+      new GetAllUsersParser(req.query as unknown as GetAllUsersParamRequest);
     if (getAllUsersParser.errors.length > 0) {
       res.locals.response = await this.fail(getAllUsersParser.errors);
       res.status(400);

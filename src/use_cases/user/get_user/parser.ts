@@ -2,13 +2,13 @@ import {TaskValidator} from '../../task/TaskValidator';
 
 
 export class GetUserParser {
-    errors: Error[];
+  errors: Error[];
 
-    constructor(data: any) {
-      const userValidator = new TaskValidator();
+  constructor(data: any) {
+    const userValidator = new TaskValidator();
 
-      userValidator.validate_id(data.id);
+    userValidator.validateId(data.id);
 
-      this.errors = userValidator.errors;
-    }
+    this.errors = userValidator.errors;
+  }
 }

@@ -1,3 +1,3 @@
-export interface GetUserRequest {
-    id: any
-}
+import {GetByIdParams} from '../../../interfaces';
+
+export interface GetUserRequest extends GetByIdParams { }

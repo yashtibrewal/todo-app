@@ -6,9 +6,19 @@ import {getUserUseCase} from './usecase';
 
 
 export class GetUserController extends Middleware {
+  /**
+   * convert to the dto object,
+   * execute the use case,
+   * send back errors if any
+   * else send back response
+   * @param req
+   * @param res
+   */
   async implementation(req: Request, res: Response): Promise<void> {
-    const getUserDtoConverter = new GetUserDtoConverter(req.params as unknown as GetUserRequest);
-    const result = await getUserUseCase.execute(getUserDtoConverter.getConvertedDto());
+    const getUserDtoConverter =
+      new GetUserDtoConverter(req.params as unknown as GetUserRequest);
+    const result =
+      await getUserUseCase.execute(getUserDtoConverter.getConvertedDto());
     if (result.isErrClass()) {
       res.locals.response = await this.fail([result.value]);
       res.status(400);

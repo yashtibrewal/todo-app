@@ -8,7 +8,11 @@ class UserValidator extends BaseValidator {
     super();
   }
 
-  validate_name(value: unknown): void {
+  /**
+   * To validate the name field of the user document
+   * @param value data to validate
+   */
+  validateName(value: unknown): void {
     const field = 'name';
     if (this.checkUndefined(value, field)) return;
     if (this.checkType(value, 'string', field)) return;
@@ -18,7 +22,11 @@ class UserValidator extends BaseValidator {
     }
   }
 
-  validate_email(value: unknown): void {
+  /**
+   * To validate the email field of the user document
+   * @param value data to validate
+   */
+  validateEmail(value: unknown): void {
     const field = 'email';
     if (this.checkUndefined(value, field)) return;
     if (this.checkType(value, 'string', field)) return;
@@ -28,7 +36,11 @@ class UserValidator extends BaseValidator {
     }
   }
 
-  validate_password(value: unknown): void {
+  /**
+   * To validate the password field of the user document
+   * @param value data to validate
+   */
+  validatePassword(value: unknown): void {
     const field = 'password';
     if (this.checkUndefined(value, field)) return;
     if (this.checkType(value, 'string', field)) return;

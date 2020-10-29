@@ -3,13 +3,13 @@ import {MarkTaskCompletedRequestParam} from './request';
 
 
 export class MarkTaskCompletedParser {
-    errors: Error[];
+  errors: Error[];
 
-    constructor(data: MarkTaskCompletedRequestParam) {
-      const taskValidator = new TaskValidator();
+  constructor(data: MarkTaskCompletedRequestParam) {
+    const taskValidator = new TaskValidator();
 
-      taskValidator.validate_id(data.id);
+    taskValidator.validateId(data.id);
 
-      this.errors = taskValidator.errors;
-    }
+    this.errors = taskValidator.errors;
+  }
 }

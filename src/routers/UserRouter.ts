@@ -1,5 +1,9 @@
 import {Router} from 'express';
-import {addUserController, addUserValidator, getAllUsersController, getAllUserValidator, getUserController, getUserValidator} from '../use_cases';
+import {
+  addUserController, addUserValidator,
+  getAllUsersController, getAllUserValidator,
+  getUserController, getUserValidator,
+} from '../use_cases';
 
 const userRouter = Router();
 

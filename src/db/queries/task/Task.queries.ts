@@ -2,10 +2,19 @@ import {ITask, ITaskDocument, TaskModel} from '../../models';
 import {ObjectId} from 'mongodb';
 
 export class TaskQueries {
+  /**
+   * Query to create a task document
+   * @param task
+   */
   async createTask(task: ITask): Promise<ITaskDocument> {
     return await TaskModel.create(task);
   }
 
+  /**
+   * query for getting all the task documents
+   * @param skip amount to skip document the result
+   * @param limit amount to limit the documents in the result
+   */
   async getAllTask(skip: number, limit: number): Promise<ITaskDocument[]> {
     return await TaskModel.aggregate([
       {
@@ -17,12 +26,22 @@ export class TaskQueries {
     ]);
   }
 
+  /**
+   * to query a task document based on the id
+   * @param id
+   */
   async getTask(id: ObjectId): Promise<ITaskDocument | null> {
     return await TaskModel.findById(id);
   }
 
+  /**
+   * to mark a task completed based on the id
+   * @param _id
+   */
   async completeTask(_id: ObjectId): Promise<ITaskDocument | null> {
-    const result = await TaskModel.findByIdAndUpdate({_id}, {completed: true}).setOptions({new: true});
+    const result =
+      await TaskModel
+          .findByIdAndUpdate({_id}, {completed: true}).setOptions({new: true});
     console.log(result);
     return result;
   }

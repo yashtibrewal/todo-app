@@ -1,5 +1,10 @@
 import {Router} from 'express';
-import {addTaskController, addTaskValidator, getAllTasksValidator, getAllTasksController, getTaskController, getTaskValidator, markTaskCompletedValidator, markTaskCompletedController} from '../use_cases';
+import {
+  addTaskController, addTaskValidator,
+  getAllTasksValidator, getAllTasksController,
+  getTaskController, getTaskValidator,
+  markTaskCompletedValidator, markTaskCompletedController,
+} from '../use_cases';
 
 const taskRouter = Router();
 

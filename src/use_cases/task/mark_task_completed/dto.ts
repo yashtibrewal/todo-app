@@ -1,20 +1,18 @@
-import {ObjectId} from 'mongodb';
+import {GetByIdParamsDto} from '../../../interfaces';
 import {MarkTaskCompletedRequestParam} from './request';
 
-export interface MarkTaskCompletedDto {
-    _id: ObjectId;
-}
+export interface MarkTaskCompletedDto extends GetByIdParamsDto { }
 
 export class MarkTaskCompletedDtoConverter {
-    private data: MarkTaskCompletedDto;
+  private data: MarkTaskCompletedDto;
 
-    constructor(data: MarkTaskCompletedRequestParam) {
-      this.data = {
-        _id: data.id,
-      };
-    }
+  constructor(data: MarkTaskCompletedRequestParam) {
+    this.data = {
+      _id: data.id,
+    };
+  }
 
-    getConvertedDto(): MarkTaskCompletedDto {
-      return this.data;
-    }
+  getConvertedDto(): MarkTaskCompletedDto {
+    return this.data;
+  }
 }

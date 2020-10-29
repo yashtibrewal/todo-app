@@ -6,9 +6,23 @@ import {MarkTaskCompletedDtoConverter} from './dto';
 
 
 export class MarkTaskCompletedController extends Middleware {
+  /**
+   * convert to the dto object,
+   * execute the use case,
+   * send back errors if any
+   * else send back response
+   * @param req
+   * @param res
+   */
   async implementation(req: Request, res: Response): Promise<void> {
-    const markTaskCompletedDtoConverter = new MarkTaskCompletedDtoConverter(req.params as unknown as MarkTaskCompletedRequestParam);
-    const result = await markTaskCompletedUseCase.execute(markTaskCompletedDtoConverter.getConvertedDto());
+    const markTaskCompletedDtoConverter =
+      new MarkTaskCompletedDtoConverter(
+        req.params as unknown as MarkTaskCompletedRequestParam,
+      );
+    const result =
+      await markTaskCompletedUseCase.execute(
+          markTaskCompletedDtoConverter.getConvertedDto(),
+      );
     if (result.isSuccessClass()) {
       res.locals.response = await this.success(result.value);
     } else {

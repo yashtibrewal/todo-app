@@ -2,17 +2,17 @@ import {AddUserRequest} from './request';
 import {UserValidator} from '../UserValidator';
 
 class AddUserParser {
-    errors: Error[];
+  errors: Error[];
 
-    constructor(data: AddUserRequest) {
-      const userValidator = new UserValidator();
+  constructor(data: AddUserRequest) {
+    const userValidator = new UserValidator();
 
-      userValidator.validate_name(data.name);
-      userValidator.validate_email(data.email);
-      userValidator.validate_password(data.password);
+    userValidator.validateName(data.name);
+    userValidator.validateEmail(data.email);
+    userValidator.validatePassword(data.password);
 
-      this.errors = userValidator.errors;
-    }
+    this.errors = userValidator.errors;
+  }
 }
 
 export {AddUserParser};
