@@ -35,7 +35,6 @@ export class Result<T> {
    */
   public getValue(): T {
   	if (!this.is_success || this.data == undefined) {
-  		console.log(this.error);
   		throw new Error(
   			`Can't get the value of an error result.
           Use 'errorValue' instead.`,
@@ -50,7 +49,6 @@ export class Result<T> {
    */
   public errorValue(): T {
   	if (this.is_success || this.error == undefined) {
-  		console.log(this.data);
   		throw new Error(
   			`Can't get the error of an successful result.
         Use 'getValue' instead.`,
