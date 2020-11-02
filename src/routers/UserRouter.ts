@@ -1,10 +1,11 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
 	addUserController, addUserValidator,
 	getAllUsersController, getAllUserValidator,
 	getUserController, getUserValidator,
 	updateUserController, updateUserValidator,
-	
+	deleteUserValidator, deleteUserController,
+
 } from "../use_cases";
 
 const userRouter = Router();
@@ -29,4 +30,9 @@ userRouter.patch("/:id",
 	updateUserController.handler(),
 );
 
-export {userRouter};
+userRouter.delete("/:id",
+	deleteUserValidator.handler(),
+	deleteUserController.handler(),
+);
+
+export { userRouter };

@@ -44,4 +44,11 @@ export class UserQueries {
 		}, user).setOptions({new: true});
 		return result;
 	}
+
+
+	async deleteUser(_id: ObjectId): Promise<any> {
+		return await UserModel.deleteOne({_id});
+	}
+
+	
 }
