@@ -4,6 +4,7 @@ import {
 	getAllTasksValidator, getAllTasksController,
 	getTaskController, getTaskValidator,
 	markTaskCompletedValidator, markTaskCompletedController,
+	updateTaskValidator, updateTaskController, 
 } from "../use_cases";
 
 const taskRouter = Router();
@@ -30,6 +31,11 @@ taskRouter.patch(
 	"/:id/markComplete",
 	markTaskCompletedValidator.handler(),
 	markTaskCompletedController.handler(),
+);
+
+taskRouter.patch("/:id",
+	updateTaskValidator.handler(),
+	updateTaskController.handler(),
 );
 
 export {taskRouter};

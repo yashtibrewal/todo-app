@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Response} from "express";
 import {ApiResponseStructure} from "../interfaces";
 
@@ -9,7 +11,7 @@ abstract class ApiResponse {
 	async fail(errors: Error[]): Promise<ApiResponseStructure> {
 		return {
 			success: false,
-			data: {},
+			data: null,
 			errors,
 		};
 	}
@@ -23,7 +25,7 @@ abstract class ApiResponse {
 		return {
 			success: true,
 			data: data,
-			errors: [],
+			errors: null,
 		};
 	}
 

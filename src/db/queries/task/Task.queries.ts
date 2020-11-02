@@ -42,7 +42,11 @@ export class TaskQueries {
 		const result =
       await TaskModel
       	.findByIdAndUpdate({_id}, {completed: true}).setOptions({new: true});
-		console.log(result);
 		return result;
+	}
+
+	
+	async updateTask(_id:ObjectId, task: ITask): Promise<ITaskDocument|null> {
+		return await TaskModel.findOneAndUpdate({_id},task).setOptions({new: true});
 	}
 }

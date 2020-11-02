@@ -3,6 +3,8 @@ import {
 	addUserController, addUserValidator,
 	getAllUsersController, getAllUserValidator,
 	getUserController, getUserValidator,
+	updateUserController, updateUserValidator,
+	
 } from "../use_cases";
 
 const userRouter = Router();
@@ -20,6 +22,11 @@ userRouter.get("/",
 userRouter.get("/:id",
 	getUserValidator.handler(),
 	getUserController.handler(),
+);
+
+userRouter.patch("/:id",
+	updateUserValidator.handler(),
+	updateUserController.handler(),
 );
 
 export {userRouter};

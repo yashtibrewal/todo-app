@@ -2,8 +2,8 @@
  * @author Yash Tibrewal
  */
 
-import {IUserDocument, UserModel, IUser} from "../../models";
-import {ObjectId} from "mongodb";
+import { IUserDocument, UserModel, IUser } from "../../models";
+import { ObjectId } from "mongodb";
 
 export class UserQueries {
 	/**
@@ -36,5 +36,12 @@ export class UserQueries {
    */
 	async getUser(id: ObjectId): Promise<IUserDocument | null> {
 		return await UserModel.findById(id);
+	}
+
+	async updateUser(_id: ObjectId, user: IUser): Promise<IUserDocument|null> {
+		const result =  await UserModel.findOneAndUpdate({
+			_id
+		}, user).setOptions({new: true});
+		return result;
 	}
 }

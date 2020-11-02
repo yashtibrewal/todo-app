@@ -4,7 +4,7 @@ interface ApiResponseStructure {
 
     success: boolean;
     data: any;
-    errors: Error[];
+    errors: Error[] | null;
 
 }
 
