@@ -19,12 +19,7 @@ export class DeleteUserController extends Middleware {
       		new DeleteUserDtoConverter(req.params as unknown as DeleteUserRequest);
 		const result =
     		await deleteUserUseCase.execute(deleteUserDtoConverter.getConvertedDto());
-		if (result.isErrClass()) {
-			res.locals.response = await this.fail([result.value]);
-			res.status(400);
-		} else {
-			res.locals.response = await this.success(result.value);
-		}
+		res.locals.response = await this.success(result.value);
 		await this.sendResponse(res);
 		return;
 	}

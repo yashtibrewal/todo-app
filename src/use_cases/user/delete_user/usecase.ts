@@ -1,10 +1,10 @@
-import {IUserDocument, userQueries} from "../../../db";
-import {Either, errClass, successClass} from "../../../interfaces/Result";
-import {UserNotFound} from "../UsecaseErrors";
-import {DeleteUserDto} from "./dto";
+import { userQueries } from "../../../db";
+import { ModificationResponse } from "../../../interfaces";
+import { Either, successClass } from "../../../interfaces";
+import { DeleteUserDto } from "./dto";
 
 
-type Response = Either<UserNotFound, IUserDocument>
+type Response = Either<ModificationResponse, ModificationResponse>
 
 class DeleteUserUseCase {
 	/**
@@ -13,11 +13,7 @@ class DeleteUserUseCase {
    */
 	async execute(data: DeleteUserDto): Promise<Response> {
 		const result = await userQueries.deleteUser(data._id);
-		if (result == undefined) {
-			return errClass(new UserNotFound());
-		} else {
-			return successClass(result);
-		}
+		return successClass(result);
 	}
 }
 

@@ -1,5 +1,6 @@
 import {ITask, ITaskDocument, TaskModel} from "../../models";
 import {ObjectId} from "mongodb";
+import { ModificationResponse } from "../../../interfaces";
 
 export class TaskQueries {
 	/**
@@ -49,4 +50,12 @@ export class TaskQueries {
 	async updateTask(_id:ObjectId, task: ITask): Promise<ITaskDocument|null> {
 		return await TaskModel.findOneAndUpdate({_id},task).setOptions({new: true});
 	}
+
+	
+	async deleteTask(_id: ObjectId): Promise<ModificationResponse> {
+		const result = await TaskModel.deleteOne({_id});
+		return result;
+	}
+
+
 }

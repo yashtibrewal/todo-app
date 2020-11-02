@@ -1,10 +1,11 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
 	addTaskController, addTaskValidator,
 	getAllTasksValidator, getAllTasksController,
 	getTaskController, getTaskValidator,
 	markTaskCompletedValidator, markTaskCompletedController,
-	updateTaskValidator, updateTaskController, 
+	updateTaskValidator, updateTaskController,
+	deleteTaskValidator, deleteTaskController
 } from "../use_cases";
 
 const taskRouter = Router();
@@ -38,4 +39,9 @@ taskRouter.patch("/:id",
 	updateTaskController.handler(),
 );
 
-export {taskRouter};
+taskRouter.delete("/:id",
+	deleteTaskValidator.handler(),
+	deleteTaskController.handler(),
+);
+
+export { taskRouter };

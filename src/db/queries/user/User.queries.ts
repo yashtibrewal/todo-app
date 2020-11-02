@@ -4,6 +4,7 @@
 
 import { IUserDocument, UserModel, IUser } from "../../models";
 import { ObjectId } from "mongodb";
+import { ModificationResponse } from "../../../interfaces";
 
 export class UserQueries {
 	/**
@@ -46,7 +47,7 @@ export class UserQueries {
 	}
 
 
-	async deleteUser(_id: ObjectId): Promise<any> {
+	async deleteUser(_id: ObjectId): Promise<ModificationResponse> {
 		return await UserModel.deleteOne({_id});
 	}
 
