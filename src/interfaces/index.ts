@@ -4,3 +4,4 @@ export * from "./PaginationParams";
 export * from "./GetByIdParams";
 export * from "./ModificationResponse";
 export * from "./Result";
+export * from "./DeleteByIdParams";

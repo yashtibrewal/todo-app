@@ -15,7 +15,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/healthcheck", healthCheckRouter);
+app.use("/health-check", healthCheckRouter);
 
 app.use("/user", userRouter);
 
